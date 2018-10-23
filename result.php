@@ -352,6 +352,14 @@ while($row = mysqli_fetch_assoc($result)) {//print_r($row);
 if(strlen($examno)> 6){
     $examno  = substr($examno,9,10); 
 }
+//Exempted students 
+$exempted_students =  array('9252','9967','9316','T28181','9195','9517','9580','9590','9456','9438','9474','9455','9029','9014','9081','9423','9217','8732','9245','9359','9454');
+if(in_array($examno,$exempted_students)) { 
+   echo  '<div style="border-color: #d20a1c !important;" class="alert alert-warning left-icon-alert" role="alert">
+                                            <strong>Notice!</strong> Your result has been withheld, Please see school Mgt.
+    </div>';
+}
+else{
 
 $examno     = filter_inputs($examno);
 $classes    = filter_inputs($classes);
@@ -439,9 +447,13 @@ while($row = mysqli_fetch_assoc($results)) {
  <?php } else { ?>     
 <div class="alert alert-warning left-icon-alert" role="alert">
                                             <strong>Notice!</strong> Your result is not yet declared
- <?php }
+</div>
+
+ <?php 
+     }
+ }
 ?>
-                                        </div>
+                                      
  <?php 
  } else
  {?>
