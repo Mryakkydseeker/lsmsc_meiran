@@ -9,6 +9,7 @@ ini_set("post_max_size","640M");
 | Email: admin@kvcodes.com
 +--------------------------------------------------------+*/
 $kv = new mysqli('localhost:3306', 'lsmscmeiran_user', 'Consistency@@2018', 'lsmscmeiran_portal');
+//$kv = new mysqli('localhost', 'root', '', 'model_meiran');
 
 if ($kv->connect_error) { // Check connection
  die("Connection failed: " . $kv->connect_error);
@@ -39,8 +40,8 @@ if(count($_FILES['attachment']['name']) > 0){
         print_r($allowed);
 		$Kv_items =  array();	
 		$Kv = 0;
-		$uploads_dir = "uploads/";
-        //print_r($_FILES['attachment']['name']);
+		$uploads_dir = "uploads/2018/third/";
+        //print_r($_FILES['attachment']['name']);//die;
 		foreach($_FILES['attachment']['name'] as $filename) {
 			move_uploaded_file($_FILES["attachment"]["tmp_name"][$Kv], $uploads_dir. basename($filename)); 
 			mysqli_query($kv, "INSERT INTO res_upload (filename, type, size, date) values ( '".$_FILES["attachment"]["name"][$Kv]."', '".$_FILES["attachment"]["type"][$Kv]."', '".$_FILES["attachment"]["size"][$Kv]."', '".date('Y-m-d')."')");

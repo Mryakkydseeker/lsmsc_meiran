@@ -359,7 +359,7 @@ $term       = filter_inputs($term);
 $session    = filter_inputs($session);
 //$arm        = filter_inputs($arm);
 $qery = "SELECT * from res_upload WHERE  Term = '$term' and Session = '$session' and filename LIKE '%$examno%'";
-//echo"qry = $qery<br/>";//die();
+//echo"qry = $qery<br/>";die();
  //$query ="select * from  photo2 as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.examno=:examno and t.ClassId=:classid)";
 
                                     
@@ -384,7 +384,7 @@ while($row = mysqli_fetch_assoc($results)) {
     else{
          $upload_yr = Date("Y");
     }
-    $uploads_dir = "download-result.php?file=./result_uploads/uploads/$upload_yr/$Term/";
+    $uploads_dir = "download-result.php?file=./result_uploads/uploads/$upload_yr/$Term/";//echo "upload_dir = ".$uploads_dir;
     if(!empty($file_name)){
         //
         $trimmed_filename = str_replace(".pdf", "", $file_name);
@@ -396,7 +396,7 @@ while($row = mysqli_fetch_assoc($results)) {
          //echo "2. examno = $examno....trimmed filename = $trimmed_filename<br>";
        echo"<tr>
             <th scope='row' colspan='2'>Your result for <span style='text-transform: uppercase; color:green;'>$term TERM</span> is available</th>           
-            <td style='text-align:center'><b><a id='download1' onclick='downloads()'  href='#'>Click here to download </a> </b></td>
+            <td style='text-align:center'><b><a  onclick='downloads()'  href='#'>Click here to download </a> </b></td>
             </tr>";
          /*<td style='text-align:center'><b><a id='download1' onclick='downloads()'  target='_blank'  href='#'>Click here to download </a> </b></td>
          
@@ -539,10 +539,10 @@ echo "Exam .....................   $examno<br>";
           
           var filenames = '<?=$trimmed_filename; ?>';//
           var dir       = '<?=$uploads_dir; ?>';
-          $("#download1").on('click', function() {
+          //$("#download1").on('click', function() {
               //alert("inside onclick And filename "+ filenames);
               window.location = dir+filenames;
-          });  
+          //});  
         }
         
         </script> 
